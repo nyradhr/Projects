@@ -34,6 +34,22 @@ public class ArrayAlgorithms {
         targetFound = binarySearch(23.0, array);
         System.out.println("23.0 in array = "+ targetFound);
 
+        System.out.println("odd numbered length array2");
+        double[] array2 = new double[7];
+        for(int i=0; i<array2.length; i++) {
+            array2[i] = (int) (Math.random()*10);
+        }
+        Arrays.sort(array2); //otherwise the binary search won't work
+        /*
+        for(int i=0; i<array2.length; i++) {
+            System.out.println(array2[i]);
+        }
+
+         */
+        targetFound = binarySearch(3.0, array2);
+        System.out.println("3.0 in array2 = "+ targetFound);
+
+
     }
 
     public double findMin(double[] array) {
