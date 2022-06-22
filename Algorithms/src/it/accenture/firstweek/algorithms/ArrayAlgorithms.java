@@ -29,10 +29,10 @@ public class ArrayAlgorithms {
         //System.out.println(mode);
 
         Arrays.sort(array); //otherwise the binary search won't work
-        boolean targetFound = binarySearch(6.0, array);
-        System.out.println("6.0 in array = "+ targetFound);
+        int targetFound = binarySearch(6.0, array);
+        System.out.println("6.0 in array in position = "+ targetFound);
         targetFound = binarySearch(23.0, array);
-        System.out.println("23.0 in array = "+ targetFound);
+        System.out.println("23.0 in array in position = "+ targetFound);
 
         System.out.println("odd numbered length array2");
         double[] array2 = new double[7];
@@ -150,28 +150,19 @@ public class ArrayAlgorithms {
     }
 
     //array has to be sorted (and not null)!!!
-    public static boolean binarySearch(double target, double[] array) {
+    public static int binarySearch(double target, double[] array) {
         int start = 0;
-        int end = array.length;
-        //System.out.println("debug: "+end);
-        while (start < end) {
-            //int pos = (start+end)/2;
-            int pos = start + (end-start)/2;
-            //System.out.println("debug2: "+pos);
+        int end = array.length-1;
+        while (start <= end) {
+            int pos =start + (end-start)/2;
             if(array[pos] == target){
-                //System.out.println("in here! true!");
-                return true;
-            }
-            if(target > array[pos]) {
-                //System.out.println("array[pos]= "+array[pos]);
-                //System.out.println("go right");
+                return pos;
+            }else if(target > array[pos]) {
                 start = pos+1;
             } else {
-                //System.out.println("array[pos]= "+array[pos]);
-                //System.out.println("go left");
                 end = pos-1;
             }
         }
-        return false;
+        return -1;
     }
 }
