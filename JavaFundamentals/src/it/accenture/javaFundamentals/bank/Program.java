@@ -17,5 +17,15 @@ public class Program {
         //do not abuse downcasting
         c2.evadeTaxes();
 
+        try{
+            a4.withdraw(5);
+            System.out.println("Withdrew 5 bucks");
+            a4.withdraw(2);
+            System.out.println("Withdrew 2 more bucks");
+
+        } catch (InsufficientBalanceException e) {
+            System.out.println("Balance not available");
+        }
+
     }
 }
