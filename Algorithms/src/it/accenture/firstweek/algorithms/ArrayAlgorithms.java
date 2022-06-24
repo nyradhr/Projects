@@ -165,4 +165,26 @@ public class ArrayAlgorithms {
         }
         return -1;
     }
+
+    public static int recBinarySearch(double[] array, double target) {
+        return auxRecBinarySearch(array, target, 0, array.length-1);
+    }
+
+    private static int auxRecBinarySearch(double[] array, double target, int start, int end) {
+        if(end>=start && start <= array.length -1){
+            int pos = (start+end)/2;
+            if(array[pos]==target) {
+                return pos;
+            }
+            if(array[pos] < target) {
+                start = pos+1;
+            } else {
+                end = pos-1;
+            }
+            return auxRecBinarySearch(array, target, start, end);
+        }
+        return -1;
+    }
+
+
 }
