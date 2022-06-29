@@ -49,17 +49,30 @@ public class StreamExamples {
     }
 
     public List<Developer> malesExpertInCPlusPlus(List<Developer> ld) {
-        var x = ld.stream().filter(d -> d.getSex()==Sex.MALE &&
+        return ld.stream().filter(d -> d.getSex()==Sex.MALE &&
                 d.getFavouriteLanguage().equals("C++")).collect(Collectors.toList());
-        double sum = x.stream().mapToDouble(Developer::getSalary).reduce(0, (d1,d2) -> d1+d2);
-        int ageProduct = x.stream().mapToInt(Developer::getAge).reduce(1, (d1,d2) -> d1*d2);
-        OptionalInt ageProduct2 = x.stream().mapToInt(Developer::getAge).reduce((d1, d2) -> d1*d2);
+        //double salarySum = x.stream().mapToDouble(Developer::getSalary).reduce(0, (d1,d2) -> d1+d2);
+        //int ageProduct = x.stream().mapToInt(Developer::getAge).reduce(1, (d1,d2) -> d1*d2);
+        //OptionalInt ageProduct2 = x.stream().mapToInt(Developer::getAge).reduce((d1, d2) -> d1*d2);
 
         //var y = x.limit(3); //stream sono detti "lazy"
         //var z = y.findFirst(); //operatore terminale
         //var w = y.collect(Collectors.toList()); //operatore terminale
         //riutilizzare uno stream impatta sulla performance
-        DeveloperSummaryData dsd = x.stream().mapToInt(Developer::getAge)
-                .reduce(new DeveloperSummaryData(),DeveloperSummaryData::addDeveloper, DeveloperSummaryData::combine);
+    }
+
+
+    public DeveloperSummaryData calculateSummaryData(List<Developer> ld) {
+
+        return ld.stream().reduce(new DeveloperSummaryData(),
+                DeveloperSummaryData::addDeveloper, DeveloperSummaryData::combine);
+        /*
+        DeveloperSummaryData result = x.stream()
+                .reduce(new DeveloperSummaryData(),
+                        (dsd, d) -> DeveloperSummaryData.addDeveloper(dsd, d),
+                        (dsd1, dsd2) -> DeveloperSummaryData.combine(dsd1, dsd2));
+         */
+        // reduce(oggetto allo stato iniziale, lambda/method reference per accumulatore,
+        // lambda/mf per combinatore se parallelismo)
     }
 }

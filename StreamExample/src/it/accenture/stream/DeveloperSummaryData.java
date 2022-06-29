@@ -4,7 +4,7 @@ public class DeveloperSummaryData {
     private double salarySum;
     private int ageProduct = 1;
 
-    public static DeveloperSummaryData addDeveloper(Developer d, DeveloperSummaryData dsd) {
+    public static DeveloperSummaryData addDeveloper(DeveloperSummaryData dsd, Developer d) {
         dsd.salarySum += d.getSalary();
         dsd.ageProduct *= d.getAge();
         return dsd;
