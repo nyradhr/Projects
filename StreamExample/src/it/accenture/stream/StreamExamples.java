@@ -12,9 +12,9 @@ public class StreamExamples {
                 "C++", 30, Sex.FEMALE, 3000);
         Developer d3 = new Developer(3L, "Fabio", "De Luigi", LocalDate.now(),
                 "Python",20, Sex.MALE, 2000);
-        Developer d4 = new Developer(4L, "Marika", "Luppi", LocalDate.now(),
+        Developer d4 = new Developer(4L, "Marika", "Lombardi", LocalDate.now(),
                 "Java", 5, Sex.FEMALE, 1500);
-        Developer d5 = new Developer(5L, "Janette", "Onais", LocalDate.now(),
+        Developer d5 = new Developer(5L, "Janette", "Dubois", LocalDate.now(),
                 "Rust", 10, Sex.FEMALE,1800);
 
         List<Developer> ld = List.of(d1,d2,d3,d4,d5);
@@ -38,7 +38,7 @@ public class StreamExamples {
         }
 
         System.out.println("Median of salaries:");
-        System.out.println(salaryMedian(ld)); //NOPE
+        System.out.println(salaryMedian(ld));
 
         System.out.println("Modal value of salaries:");
         System.out.println(salaryModalValue(ld));
@@ -105,9 +105,7 @@ public class StreamExamples {
     }
 
 
-    //esercizi: prossime 6 funzioni
-
-    //diamo per scontato che ci siano almeno 2 elementi nella lista
+    //Diamo per scontato che ci siano almeno due elementi nella lista
     public static boolean salaryDifferenceBetweenMalesAndFemales(List<Developer> ld) {
 
         OptionalDouble femaleSalary = ld.stream()
@@ -123,7 +121,7 @@ public class StreamExamples {
                 && maleSalary.getAsDouble() > femaleSalary.getAsDouble();
     }
 
-    //diamo per scontato che ci siano almeno 2 elementi nella lista
+    //Diamo per scontato che ci siano almeno due elementi nella lista
     public static double olderThan30CPlusPlusDevAverageSalary(List<Developer> ld) {
         OptionalDouble averageSalary = ld.stream()
                 .filter(d -> d.getFavouriteLanguage().equals("C++") && d.isOlderThan(30))
@@ -131,7 +129,7 @@ public class StreamExamples {
         return averageSalary.isPresent() ? averageSalary.getAsDouble() : 0;
     }
 
-    //diamo per scontato che ci siano almeno 2 elementi nella lista
+    //Diamo per scontato che ci siano almeno due elementi nella lista
     public static List<Developer> threeMostExperiencedDevs(List<Developer> ld) {
         return ld.stream()
                 .sorted(Comparator.comparing(Developer::getYearsOfExperience).reversed())
@@ -139,7 +137,7 @@ public class StreamExamples {
                 .toList();
     }
 
-    //diamo per scontato che ci siano almeno 2 elementi nella lista
+    //Diamo per scontato che ci siano almeno due elementi nella lista
     //e che i linguaggi di programmazione, se diversi, non siano
     //misspelling o altri modi di scrivere lo stesso nome
     //e.g. lowercase/Uppercase
@@ -154,7 +152,7 @@ public class StreamExamples {
                 .toList();
     }
 
-    //diamo per scontato che ci siano almeno 2 elementi nella lista
+    //Diamo per scontato che ci siano almeno due elementi nella lista
     public static double salaryMedian(List<Developer> ld) {
         double[] salaries = ld.stream().mapToDouble(Developer::getSalary).sorted().toArray();
         if(salaries.length % 2 != 0){
@@ -164,7 +162,7 @@ public class StreamExamples {
         }
     }
 
-    //diamo per scontato che ci siano almeno 2 elementi nella lista
+    //Diamo per scontato che ci siano almeno due elementi nella lista
     public static double salaryModalValue(List<Developer> ld) {
         var x = ld.stream()
                 .collect(Collectors.groupingBy(Developer::getSalary))
