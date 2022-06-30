@@ -2,6 +2,7 @@ package it.accenture.stream;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class StreamExamples {
@@ -19,7 +20,7 @@ public class StreamExamples {
 
         List<Developer> ld = List.of(d1,d2,d3,d4,d5);
 
-        System.out.println("Income inequality flag is set to:");
+        System.out.println("Income inequality?:");
         System.out.println(salaryDifferenceBetweenMalesAndFemales(ld));
 
         System.out.println("C++ developer older than 30 average salary:");
@@ -106,7 +107,7 @@ public class StreamExamples {
 
 
     //Diamo per scontato che ci siano almeno due elementi nella lista
-    public static boolean salaryDifferenceBetweenMalesAndFemales(List<Developer> ld) {
+    public static Optional<Boolean> salaryDifferenceBetweenMalesAndFemales(List<Developer> ld) {
 
         OptionalDouble femaleSalary = ld.stream()
                 .filter(d -> d.getSex() == Sex.FEMALE)
@@ -117,8 +118,8 @@ public class StreamExamples {
                 .mapToDouble(Developer::getSalary)
                 .min();
 
-        return maleSalary.isPresent() && femaleSalary.isPresent()
-                && maleSalary.getAsDouble() > femaleSalary.getAsDouble();
+        return maleSalary.isPresent() && femaleSalary.isPresent() ?
+                Optional.of(maleSalary.getAsDouble() > femaleSalary.getAsDouble()) : Optional.empty();
     }
 
     //Diamo per scontato che ci siano almeno due elementi nella lista
@@ -126,7 +127,7 @@ public class StreamExamples {
         OptionalDouble averageSalary = ld.stream()
                 .filter(d -> d.getFavouriteLanguage().equals("C++") && d.isOlderThan(30))
                 .mapToDouble(Developer::getSalary).average();
-        return averageSalary.isPresent() ? averageSalary.getAsDouble() : 0;
+        return averageSalary.orElse(0);
     }
 
     //Diamo per scontato che ci siano almeno due elementi nella lista
@@ -164,11 +165,17 @@ public class StreamExamples {
 
     //Diamo per scontato che ci siano almeno due elementi nella lista
     public static double salaryModalValue(List<Developer> ld) {
-        var x = ld.stream()
+        /*var x = ld.stream()
                 .collect(Collectors.groupingBy(Developer::getSalary))
                 .entrySet()
                 .stream()
                 .max(Comparator.comparingInt(kv -> kv.getValue().size()));
         return x.isPresent() ? x.get().getKey() : 0;
+
+         */
+        return ld.stream().map(Developer::getSalary)
+                .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
+                .entrySet().stream().max((kv1,kv2) ->(int) (kv1.getValue() - kv2.getValue())).get().getKey();
+
     }
 }
