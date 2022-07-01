@@ -2,20 +2,8 @@ package it.accenture.designpatterns.strategy;
 
 public class Scoreboard {
 
-    //private static Scoreboard uniqueInstance; //singleton, if it doesn't work we revert to normal
     static int teamOneScore;
     static int teamTwoScore;
-
-    //private Scoreboard() {}
-
-    /*
-    public static Scoreboard getInstance() {
-        if(uniqueInstance == null) {
-            uniqueInstance = new Scoreboard();
-        }
-        return uniqueInstance;
-    }
-     */
 
     public static void scorePoint(String team) {
         if (team.equals("teamOne")) {

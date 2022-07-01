@@ -2,19 +2,16 @@ package it.accenture.designpatterns.strategy;
 
 public class LeftPlayer extends AbstractPlayer {
 
-    AttackStrategy attackStrategy;
-    DefenseStrategy defenseStrategy;
-
     public LeftPlayer() {
-        attackStrategy = new AggressiveAttack();
-        defenseStrategy = new AggressiveDefense();
+        this.attackStrategy = new AggressiveAttack();
+        this.defenseStrategy = new AggressiveDefense();
     }
 
     @Override
     public void changeStrategy(int teamPoints) {
         if(teamPoints < 16) {
-            attackStrategy = new StrategicAttack();
-            defenseStrategy = new StrategicDefense();
+            this.attackStrategy = new StrategicAttack();
+            this.defenseStrategy = new StrategicDefense();
         }
     }
 }
