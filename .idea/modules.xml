@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/CourseExample/CourseExample.iml" filepath="$PROJECT_DIR$/CourseExample/CourseExample.iml" />
       <module fileurl="file://$PROJECT_DIR$/DesignPatterns/DesignPatterns.iml" filepath="$PROJECT_DIR$/DesignPatterns/DesignPatterns.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavaFundamentals/JavaFundamentals.iml" filepath="$PROJECT_DIR$/JavaFundamentals/JavaFundamentals.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaJDBC/JavaJDBC.iml" filepath="$PROJECT_DIR$/JavaJDBC/JavaJDBC.iml" />
       <module fileurl="file://$PROJECT_DIR$/StreamExample/StreamExample.iml" filepath="$PROJECT_DIR$/StreamExample/StreamExample.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/WorkfullyProjects.iml" filepath="$PROJECT_DIR$/.idea/WorkfullyProjects.iml" />
       <module fileurl="file://$PROJECT_DIR$/es_1/es_1.iml" filepath="$PROJECT_DIR$/es_1/es_1.iml" />
